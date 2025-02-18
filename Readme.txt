@@ -15,6 +15,10 @@ This project implements a **multi-threaded, asynchronous Client/Server** applica
 
 - **IPC Mechanism**:  
   - We chose **POSIX Message Queues** because they allow flexible, asynchronous message passing between client and server. They also simplify concurrency when multiple clients are present, compared to implementing our own shared memory coordination.
+  - Ensure you have the Posix message queue installed. 
+  ```
+  sudo apt install libmqueue-dev
+  ```
   
 - **Client**:  
   - Registers with the server upon startup.  
