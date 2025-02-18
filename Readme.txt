@@ -7,7 +7,7 @@
 
 ## Overview
 
-This project implements a **multi-threaded, asynchronous Client/Server** application using **POSIX Message Queues** for Inter-Process Communication (IPC). The **server** acts like a Linux shell, processing both **shell commands** and **custom user-defined commands** (e.g., `LIST`, `HIDE`, `EXIT`, `CHPT`, etc.). The **client** sends commands to the server and receives responses. The server also maintains each client’s visibility status via a local global array (not shared across processes).
+This project implements a **multi-threaded, asynchronous Client/Server** application using **POSIX Message Queues** for Inter-Process Communication (IPC). The **server** acts like a Linux shell, processing both **shell commands** and **custom user-defined commands** (e.g., `LIST`, `HIDE`, `EXIT`, `CHPT`, etc.). The **client** sends commands to the server and receives responses. The server also maintains each client’s visibility status via a localized global array (not shared across processes).
 
 ---
 
@@ -39,7 +39,10 @@ Since these executables are **statically linked**, you may need certain packages
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y glibc-static libpthread-stubs0-dev musl-tools
+sudo apt-get install -y glibc-static libpthread-stubs0-dev musl-tools 
+
+# Also ensure you have the messaging queue installed
+ sudo apt install libmqueue-dev
 
 # Build and Run Instructions
 ## Navigate to the CODE directory (or wherever your source files and Makefile reside).
@@ -55,7 +58,7 @@ This should produce two statically-linked executables: server and client.
 ./server
 ```
 The server must be running before any client can connect.
-Start the Client:
+Open a new terminal & Start the Client:
 ```
 ./client
 ```
